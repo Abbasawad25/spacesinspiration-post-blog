@@ -1,0 +1,615 @@
+/* =============================================
+   qalam.css — مدوّنة القلم
+   سمات مدمجة من: rixpost + qalam
+   ثلاث سمات: داكن | فاتح | rixpost
+============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Amiri:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css');
+
+/* =============================================
+   ━━━━━━━━  السمة الداكنة (افتراضي)  ━━━━━━━
+============================================= */
+:root {
+  --bg:        #0a0a0f;
+  --bg2:       #111118;
+  --surface:   #16161e;
+  --surface2:  #1e1e2a;
+  --surface3:  #26263a;
+  --border:    rgba(255,255,255,0.07);
+  --border2:   rgba(255,255,255,0.12);
+  --text:      #f0ede8;
+  --text2:     #b0adb8;
+  --muted:     #666;
+  --accent:    #f0c040;
+  --accent2:   #e0a820;
+  --teal:      #00c9a7;
+  --red:       #ff4d6d;
+  --blue:      #64a0ff;
+  --nav-bg:    rgba(10,10,15,0.97);
+  --nav-h:     72px;
+  --shadow:    0 8px 32px rgba(0,0,0,0.45);
+  --shadow-sm: 0 2px 12px rgba(0,0,0,0.3);
+  --radius:    16px;
+  --radius-sm: 10px;
+  --sidebar-w: 250px;
+}
+
+/* =============================================
+   ━━━━━━━━  السمة الفاتحة  ━━━━━━━━━━━━━━━━━
+============================================= */
+[data-theme="light"] {
+  --bg:       #f5f3ef;
+  --bg2:      #ede9e3;
+  --surface:  #ffffff;
+  --surface2: #f0ede8;
+  --surface3: #e8e4dc;
+  --border:   rgba(0,0,0,0.07);
+  --border2:  rgba(0,0,0,0.14);
+  --text:     #1a1a2e;
+  --text2:    #555;
+  --muted:    #999;
+  --nav-bg:   rgba(245,243,239,0.97);
+  --shadow:   0 8px 32px rgba(0,0,0,0.1);
+  --shadow-sm:0 2px 12px rgba(0,0,0,0.06);
+}
+
+/* =============================================
+   ━━━━━━  سمة RixPost (بنفسجي / مضيء)  ━━━━━
+   مستوحاة من ألوان admin/style1.css في rixpost
+============================================= */
+[data-theme="rixpost"] {
+  --bg:        #E4E9F7;
+  --bg2:       #d8dfef;
+  --surface:   #FFFFFF;
+  --surface2:  #f0f2fb;
+  --surface3:  #e0e5f5;
+  --border:    rgba(105,92,254,0.15);
+  --border2:   rgba(105,92,254,0.3);
+  --text:      #1a1535;
+  --text2:     #707070;
+  --muted:     #aaa;
+  --accent:    #695CFE;
+  --accent2:   #5548e0;
+  --teal:      #00c9a7;
+  --red:       #ff4d6d;
+  --blue:      #3a6cf4;
+  --nav-bg:    rgba(255,255,255,0.98);
+  --shadow:    0 8px 32px rgba(105,92,254,0.18);
+  --shadow-sm: 0 2px 12px rgba(105,92,254,0.1);
+}
+[data-theme="rixpost"] .nav-btn.active { color: var(--accent); }
+[data-theme="rixpost"] .nav-btn.active::after { background: var(--accent); }
+[data-theme="rixpost"] .gold-rule { background: linear-gradient(90deg, var(--accent), transparent); }
+[data-theme="rixpost"] .btn-primary { background: linear-gradient(135deg, #695CFE, #3a6cf4); color: #fff; }
+[data-theme="rixpost"] .f-tag.active, [data-theme="rixpost"] .f-tag:hover {
+  border-color: var(--accent); color: var(--accent); background: rgba(105,92,254,0.08);
+}
+[data-theme="rixpost"] .post-title { color: #1a1535; }
+[data-theme="rixpost"] .author-ava { background: linear-gradient(135deg, #695CFE, #3a6cf4); }
+[data-theme="rixpost"] .act-btn:hover { background: rgba(105,92,254,0.07); color: var(--accent); border-color: rgba(105,92,254,0.25); }
+[data-theme="rixpost"] .cover { background: linear-gradient(135deg, #695CFE, #3a6cf4, #1a1535); }
+[data-theme="rixpost"] .ava-lg { background: linear-gradient(135deg, #695CFE, #3a6cf4); }
+[data-theme="rixpost"] .stat-num { color: var(--accent); }
+[data-theme="rixpost"] .search-bar:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(105,92,254,0.15); }
+[data-theme="rixpost"] input:focus, [data-theme="rixpost"] textarea:focus { border-color: var(--accent) !important; }
+[data-theme="rixpost"] .sidebar-rix { background: #fff; border-left-color: rgba(105,92,254,0.2); }
+[data-theme="rixpost"] .sidebar-rix .s-link:hover, [data-theme="rixpost"] .sidebar-rix .s-link.active {
+  background: var(--accent); color: #fff;
+}
+
+/* =============================================
+   RESET & BASE
+============================================= */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { font-size:16px; scroll-behavior:smooth; }
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  direction: rtl;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { max-width:100%; display:block; }
+button { cursor:pointer; font-family: 'Cairo', sans-serif; }
+input, textarea, select { font-family: 'Cairo', sans-serif; }
+
+/* =============================================
+   LAYOUT
+============================================= */
+#app {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  position: relative;
+  overflow-x: hidden;
+}
+.page {
+  display: none;
+  min-height: calc(100dvh - var(--nav-h));
+  padding-bottom: calc(var(--nav-h) + 1rem);
+  animation: pageIn 0.3s ease both;
+}
+.page.active { display: block; }
+@keyframes pageIn {
+  from { opacity:0; transform:translateY(10px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* =============================================
+   BOTTOM NAV — TikTok Style
+============================================= */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 480px;
+  height: var(--nav-h);
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 4px;
+  z-index: 9000;
+  transition: background 0.3s;
+}
+.nav-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 6px 2px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  transition: color 0.22s;
+  position: relative;
+  border-radius: 12px;
+}
+.nav-btn svg { width:22px; height:22px; transition: transform 0.22s; }
+.nav-btn.active { color: var(--accent); }
+.nav-btn.active svg { transform: scale(1.12); }
+.nav-btn.active::after {
+  content:'';
+  position:absolute; bottom:-1px; left:50%; transform:translateX(-50%);
+  width:20px; height:2px;
+  background: var(--accent);
+  border-radius:2px;
+}
+
+/* =============================================
+   PAGE HEADER
+============================================= */
+.page-header {
+  padding: 3.2rem 1.25rem 0.9rem;
+  background: linear-gradient(180deg, var(--bg) 60%, transparent);
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(8px);
+}
+.page-header h1 { font-family:'Amiri',serif; font-size:1.65rem; font-weight:700; line-height:1.3; }
+.page-header .sub { font-size:0.72rem; color:var(--muted); letter-spacing:2.5px; margin-top:2px; }
+.gold-rule { width:36px; height:2px; background:linear-gradient(90deg,var(--accent),transparent); margin-top:8px; }
+
+/* =============================================
+   THEME SWITCHER (3 أزرار)
+============================================= */
+.theme-switcher {
+  display: flex; gap: 6px; align-items: center;
+}
+.theme-btn {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 1.5px solid var(--border2);
+  background: var(--surface2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; cursor: pointer; transition: all 0.2s;
+  color: var(--text);
+}
+.theme-btn:hover, .theme-btn.active-theme { border-color: var(--accent); background: var(--accent); color: #000; }
+[data-theme="rixpost"] .theme-btn:hover,
+[data-theme="rixpost"] .theme-btn.active-theme { color: #fff; }
+
+/* =============================================
+   CARDS
+============================================= */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+.card:hover { transform:translateY(-2px); border-color:var(--border2); box-shadow:var(--shadow); }
+
+/* =============================================
+   POST CARD
+============================================= */
+.post-card { animation: fadeUp 0.4s ease both; }
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(14px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.post-inner { padding: 1.1rem; }
+.post-top { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.85rem; cursor:pointer; }
+.author-ava {
+  width:38px; height:38px; border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--teal));
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700; font-size:0.85rem; color:#000; flex-shrink:0; overflow:hidden;
+}
+.author-ava img { width:100%; height:100%; object-fit:cover; }
+.author-name { font-size:0.83rem; font-weight:700; }
+.post-date { font-size:0.68rem; color:var(--muted); }
+.cat-badge { padding:0.18rem 0.65rem; border-radius:50px; font-size:0.67rem; font-weight:700; }
+.cat-tech      { background:rgba(0,201,167,0.1); color:var(--teal); }
+.cat-culture   { background:rgba(240,192,64,0.12); color:var(--accent); }
+.cat-lifestyle { background:rgba(255,77,109,0.1); color:var(--red); }
+.cat-quote     { background:rgba(100,160,255,0.1); color:var(--blue); }
+[data-theme="rixpost"] .cat-culture { background:rgba(105,92,254,0.1); color:var(--accent); }
+.post-title { font-family:'Amiri',serif; font-size:1.15rem; font-weight:700; line-height:1.55; margin-bottom:0.55rem; }
+.post-body { font-size:0.875rem; line-height:1.85; color:var(--text2); margin-bottom:0.8rem; }
+.post-body.quote-style {
+  font-family:'Amiri',serif; font-style:italic;
+  color:var(--teal); border-right:2px solid var(--accent);
+  padding-right:0.75rem; font-size:1rem;
+}
+.post-body.collapsed {
+  display:-webkit-box; -webkit-line-clamp:3;
+  -webkit-box-orient:vertical; overflow:hidden;
+}
+.read-more { background:none; border:none; color:var(--accent); font-size:0.77rem; padding:0; margin-bottom:0.7rem; display:block; }
+.post-stats {
+  display:flex; gap:1rem; font-size:0.74rem; color:var(--muted);
+  padding-bottom:0.8rem; border-bottom:1px solid var(--border); margin-bottom:0.8rem;
+}
+.stat { display:flex; align-items:center; gap:3px; }
+.stat svg { width:13px; height:13px; }
+.post-actions { display:flex; gap:0.4rem; }
+.act-btn {
+  flex:1; display:flex; align-items:center; justify-content:center; gap:0.3rem;
+  padding:0.5rem 0.3rem; border:1px solid var(--border); border-radius:var(--radius-sm);
+  background:transparent; font-size:0.74rem; color:var(--muted);
+  transition: all 0.2s;
+}
+.act-btn svg { width:14px; height:14px; flex-shrink:0; }
+.act-btn:hover { background:rgba(240,192,64,0.06); color:var(--accent); border-color:rgba(240,192,64,0.2); }
+.act-btn.liked { color:var(--red); border-color:rgba(255,77,109,0.2); }
+.act-btn.liked svg { fill:var(--red); }
+
+/* Share dropdown */
+.share-wrap { flex:1; position:relative; }
+.share-wrap .act-btn { width:100%; }
+.share-dd {
+  position:absolute; bottom:calc(100% + 8px); left:0; right:0;
+  background:var(--surface2); border:1px solid var(--border2);
+  border-radius:14px; overflow:hidden; display:none; z-index:500;
+  box-shadow:0 16px 40px rgba(0,0,0,0.4);
+  animation:popUp 0.18s ease;
+}
+.share-dd.open { display:block; }
+@keyframes popUp {
+  from { opacity:0; transform:translateY(6px) scale(0.97); }
+  to   { opacity:1; transform:translateY(0) scale(1); }
+}
+.share-opt {
+  display:flex; align-items:center; gap:0.65rem;
+  padding:0.7rem 1rem; border:none; background:transparent;
+  color:var(--text); font-size:0.8rem; width:100%; text-align:right;
+  transition:background 0.15s;
+}
+.share-opt + .share-opt { border-top:1px solid var(--border); }
+.share-opt:hover { background:rgba(255,255,255,0.04); }
+.s-icon { width:28px; height:28px; border-radius:7px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.si-tw { background:#000; }
+.si-wa { background:#25d366; }
+.si-tg { background:#0088cc; }
+.si-lk { background:var(--surface3); border:1px solid var(--border); }
+
+/* =============================================
+   FORMS
+============================================= */
+.form-group { margin-bottom:1rem; }
+.form-label { font-size:0.78rem; color:var(--muted); margin-bottom:0.35rem; display:block; font-weight:600; }
+.form-input, .form-textarea, .form-select {
+  width:100%; background:var(--surface2); border:1px solid var(--border);
+  border-radius:var(--radius-sm); padding:0.75rem 1rem;
+  font-size:0.875rem; color:var(--text); outline:none;
+  transition:border-color 0.2s, box-shadow 0.2s;
+  direction:rtl;
+}
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  border-color:var(--accent);
+  box-shadow: 0 0 0 3px rgba(240,192,64,0.12);
+}
+.form-textarea { resize:none; }
+.form-select { appearance:none; cursor:pointer; }
+
+/* =============================================
+   BUTTONS
+============================================= */
+.btn {
+  display:inline-flex; align-items:center; justify-content:center; gap:0.4rem;
+  padding:0.7rem 1.5rem; border-radius:var(--radius-sm);
+  font-size:0.875rem; font-weight:700;
+  border:none; cursor:pointer; transition:all 0.2s;
+}
+.btn-primary { background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#000; }
+.btn-primary:hover { transform:scale(1.02); opacity:0.92; }
+.btn-outline { background:transparent; border:1px solid var(--border2); color:var(--text); }
+.btn-outline:hover { border-color:var(--accent); color:var(--accent); }
+.btn-danger { background:rgba(255,77,109,0.12); color:var(--red); border:1px solid rgba(255,77,109,0.2); }
+.btn-danger:hover { background:var(--red); color:#fff; }
+.btn-sm { padding:0.4rem 0.9rem; font-size:0.78rem; }
+.btn-full { width:100%; }
+
+/* =============================================
+   AVATAR
+============================================= */
+.ava-lg {
+  width:80px; height:80px; border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--teal));
+  display:flex; align-items:center; justify-content:center;
+  font-size:2rem; font-weight:900; color:#000;
+  border:3px solid var(--bg); overflow:hidden; cursor:pointer;
+}
+.ava-lg img { width:100%; height:100%; object-fit:cover; }
+
+/* =============================================
+   BADGES
+============================================= */
+.badge { display:inline-block; padding:0.18rem 0.65rem; border-radius:50px; font-size:0.68rem; font-weight:700; }
+.badge-admin    { background:rgba(255,77,109,0.12); color:var(--red); }
+.badge-author   { background:rgba(240,192,64,0.12); color:var(--accent); }
+.badge-user     { background:rgba(255,255,255,0.06); color:var(--muted); }
+.badge-active   { background:rgba(0,201,167,0.12); color:var(--teal); }
+.badge-inactive { background:rgba(255,77,109,0.08); color:var(--muted); }
+[data-theme="rixpost"] .badge-author { background:rgba(105,92,254,0.12); color:var(--accent); }
+
+/* =============================================
+   SEARCH BAR
+============================================= */
+.search-bar {
+  display:flex; align-items:center; gap:0.5rem;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:50px; padding:0.6rem 1rem;
+  margin:0.75rem 1.25rem 0;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-bar:focus-within { border-color:var(--accent); box-shadow:0 0 0 3px rgba(240,192,64,0.1); }
+.search-bar input {
+  flex:1; border:none; outline:none;
+  background:transparent; font-size:0.88rem; color:var(--text);
+  text-align:right; direction:rtl;
+}
+.search-bar input::placeholder { color:var(--muted); }
+.search-bar svg { width:18px; height:18px; color:var(--muted); flex-shrink:0; }
+
+/* =============================================
+   FILTER TAGS
+============================================= */
+.filter-tags { display:flex; flex-wrap:wrap; gap:0.4rem; padding:0.75rem 1.25rem; }
+.f-tag {
+  padding:0.3rem 0.9rem; border-radius:50px;
+  border:1px solid var(--border); background:transparent;
+  font-size:0.76rem; color:var(--muted); cursor:pointer; transition:all 0.2s;
+}
+.f-tag.active, .f-tag:hover { border-color:var(--accent); color:var(--accent); background:rgba(240,192,64,0.07); }
+
+/* =============================================
+   STATS GRID
+============================================= */
+.stats-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; padding:1rem 1.25rem; }
+.stat-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1.1rem; transition: all 0.2s; }
+.stat-card:hover { box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+.stat-icon { font-size:1.4rem; margin-bottom:0.4rem; }
+.stat-num { font-family:'Amiri',serif; font-size:1.8rem; font-weight:900; color:var(--accent); line-height:1; }
+.stat-lbl { font-size:0.72rem; color:var(--muted); margin-top:0.2rem; }
+
+/* =============================================
+   PROFILE COVER
+============================================= */
+.cover {
+  height:150px;
+  background:linear-gradient(135deg,#0a0a1a,#1a1a3e,#0a2030);
+  position:relative; overflow:hidden;
+}
+.cover::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(circle at 30% 60%,rgba(240,192,64,0.14) 0%,transparent 60%),
+              radial-gradient(circle at 80% 20%,rgba(0,201,167,0.1) 0%,transparent 50%);
+}
+[data-theme="light"] .cover { background:linear-gradient(135deg,#e8e0d0,#d4c9b0,#c8d8e8); }
+
+/* =============================================
+   TOAST
+============================================= */
+.toast {
+  position:fixed; bottom:calc(var(--nav-h) + 12px); left:50%;
+  transform:translateX(-50%) translateY(16px);
+  background:var(--surface2); border:1px solid var(--border2);
+  backdrop-filter:blur(12px);
+  color:var(--text); padding:0.6rem 1.3rem;
+  border-radius:50px; font-size:0.8rem; z-index:99999;
+  opacity:0; pointer-events:none;
+  transition:all 0.32s cubic-bezier(0.34,1.56,0.64,1);
+  white-space:nowrap;
+}
+.toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+.toast.success { border-color:rgba(0,201,167,0.4); color:var(--teal); }
+.toast.error   { border-color:rgba(255,77,109,0.4); color:var(--red); }
+.toast.gold    { border-color:rgba(240,192,64,0.4); color:var(--accent); }
+[data-theme="rixpost"] .toast.gold { border-color:rgba(105,92,254,0.4); color:var(--accent); }
+
+/* =============================================
+   LOADER
+============================================= */
+.loader { display:flex; align-items:center; justify-content:center; padding:3rem; flex-direction:column; gap:1rem; }
+.spinner {
+  width:32px; height:32px;
+  border:2px solid var(--border2);
+  border-top-color:var(--accent);
+  border-radius:50%;
+  animation:spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+.loader-text { font-size:0.8rem; color:var(--muted); }
+
+/* =============================================
+   MODAL
+============================================= */
+.modal-overlay {
+  position:fixed; inset:0; background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(4px);
+  z-index:8000; display:none; align-items:center; justify-content:center; padding:1rem;
+}
+.modal-overlay.open { display:flex; animation:fadeIn 0.2s ease; }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+.modal {
+  background:var(--surface); border:1px solid var(--border2);
+  border-radius:var(--radius); max-width:440px; width:100%;
+  max-height:85vh; overflow-y:auto;
+  animation:modalIn 0.25s ease;
+}
+@keyframes modalIn { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }
+.modal-header { display:flex; align-items:center; justify-content:space-between; padding:1.25rem 1.25rem 0; }
+.modal-title { font-family:'Amiri',serif; font-size:1.15rem; font-weight:700; }
+.modal-close { background:none; border:none; color:var(--muted); font-size:1.3rem; line-height:1; cursor:pointer; }
+.modal-body { padding:1.25rem; }
+
+/* =============================================
+   RIXPOST SIDEBAR (في لوحة الإدارة)
+   مستوحى مباشرة من rixpost admin
+============================================= */
+.sidebar-rix {
+  position: fixed; top:0; right:0; height:100%;
+  width: var(--sidebar-w);
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  padding: 10px 14px;
+  transition: width 0.3s ease;
+  z-index: 8000;
+  overflow-y: auto;
+}
+.sidebar-rix.closed { width: 70px; }
+.sidebar-rix.closed .s-label, .sidebar-rix.closed .s-header-text { display:none; }
+.s-header { display:flex; align-items:center; gap:10px; padding:10px 0 20px; border-bottom: 1px solid var(--border); margin-bottom:16px; }
+.s-logo { width:40px; height:40px; border-radius:8px; overflow:hidden; flex-shrink:0; background: var(--accent); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:18px; color:#000; }
+.s-header-text h3 { font-size:14px; font-weight:700; }
+.s-header-text span { font-size:11px; color:var(--muted); }
+.s-toggle {
+  position:absolute; top:20px; left:-16px;
+  width:32px; height:32px; border-radius:50%;
+  background: var(--accent); color:#000;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-size:18px; border:none;
+  transition: transform 0.3s;
+}
+.sidebar-rix.closed .s-toggle { transform:rotate(180deg); }
+.s-menu { list-style:none; }
+.s-menu li { margin:4px 0; }
+.s-link {
+  display:flex; align-items:center; gap:12px;
+  padding:10px 12px; border-radius:8px; cursor:pointer;
+  border:none; background:transparent; color:var(--text2);
+  font-size:14px; font-weight:500; width:100%;
+  text-decoration:none; transition:all 0.2s;
+}
+.s-link i { font-size:20px; min-width:24px; }
+.s-link:hover, .s-link.active { background: var(--accent); color:#000; }
+[data-theme="rixpost"] .s-link:hover, [data-theme="rixpost"] .s-link.active { color:#fff; }
+[data-theme="light"] .s-link:hover, [data-theme="light"] .s-link.active { color:#000; }
+.admin-content-wrap { transition: padding-right 0.3s; padding-right: calc(var(--sidebar-w) + 1rem); }
+.admin-content-wrap.sidebar-closed { padding-right: 70px; }
+
+/* =============================================
+   RIXPOST COPY BUTTON (مستوحى من copy.css)
+============================================= */
+.rix-copy-btn {
+  height:40px; padding:0 18px;
+  color:#fff; background:#265df2;
+  border:none; border-radius:8px;
+  font-size:14px; font-weight:500;
+  cursor:pointer; transition:all 0.4s ease;
+  display:inline-flex; align-items:center; gap:8px;
+}
+.rix-copy-btn:hover { background:#2ECC71; }
+.rix-copy-btn.copied { background:#2ECC71; }
+
+/* =============================================
+   SHARE PAGE BUTTONS (مستوحى من rixpost)
+============================================= */
+.share-platform-btn {
+  display:flex; align-items:center; gap:0.65rem; padding:0.9rem;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); cursor:pointer; color:var(--text);
+  font-size:0.83rem; transition:border-color 0.2s, transform 0.2s;
+}
+.share-platform-btn:hover { border-color:var(--accent); transform:translateY(-2px); }
+
+/* =============================================
+   UTILITY
+============================================= */
+.flex { display:flex; }
+.items-center { align-items:center; }
+.gap-1 { gap:0.25rem; }
+.gap-2 { gap:0.5rem; }
+.text-muted { color:var(--muted); }
+.text-accent { color:var(--accent); }
+.text-teal { color:var(--teal); }
+.text-sm { font-size:0.8rem; }
+.text-xs { font-size:0.7rem; }
+.font-serif { font-family:'Amiri',serif; }
+.fw-bold { font-weight:700; }
+.mt-1 { margin-top:0.5rem; }
+.mb-1 { margin-bottom:0.5rem; }
+.mb-2 { margin-bottom:1rem; }
+.p-1 { padding:0.25rem; }
+.empty-state { text-align:center; padding:3rem 1.5rem; color:var(--muted); font-family:'Amiri',serif; font-size:1rem; }
+.divider { border:none; border-top:1px solid var(--border); margin:0.75rem 0; }
+.section { padding:0 1.25rem; }
+.section + .section { margin-top:1.5rem; }
+.section-title { font-size:0.78rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:2px; margin-bottom:0.75rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--surface3); border-radius:4px; }
+
+/* =============================================
+   POST ACTIONS — copy نص المنشور
+============================================= */
+.copy-text-row {
+  display:flex; align-items:center; gap:8px;
+  padding:0.75rem 1rem;
+  background:var(--surface2); border-radius:var(--radius-sm);
+  margin-top:0.5rem;
+}
+.copy-text-row p {
+  flex:1; font-size:0.8rem; color:var(--text2); overflow:hidden;
+  text-overflow:ellipsis; white-space:nowrap;
+}
+
+/* =============================================
+   نافذة تفاصيل المنشور — قراءة كاملة
+============================================= */
+.post-full-body {
+  padding:0 1.25rem 1.5rem;
+  font-size:0.95rem; line-height:2; color:var(--text2);
+}
+.post-full-body.quote-style {
+  font-family:'Amiri',serif; font-style:italic;
+  font-size:1.1rem; color:var(--teal);
+  border-right:3px solid var(--accent); padding-right:1rem;
+}
